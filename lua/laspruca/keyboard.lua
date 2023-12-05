@@ -7,10 +7,10 @@ vim.keymap.set("n", "<leader>fg", telescope.live_grep, {})
 vim.keymap.set("n", "<leader>fb", telescope.buffers, {})
 vim.keymap.set("n", "<leader>fh", telescope.help_tags, {})
 
--- Sidebar thing
-vim.keymap.set("n", "<leader>ss", function()
-	vim.cmd("NvimTreeOpen")
-end, {})
+-- Sidebar
+vim.keymap.set("n", "<leader>ss", ":NvimTreeOpen<CR>")
+vim.keymap.set("n", "<leader>s+", ":NvimTreeResize +20<CR>")
+vim.keymap.set("n", "<leader>s-", ":NvimTreeResize -20<CR>")
 
 -- Harpoon
 vim.keymap.set("n", "<leader>a", function()
