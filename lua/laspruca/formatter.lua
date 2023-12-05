@@ -1,4 +1,4 @@
-local prettier = require("formatter.filetypes.javascript").pritterd
+local prettier = require("formatter.filetypes.javascript").prettier
 
 require("formatter").setup({
 	-- Enable or disable logging
