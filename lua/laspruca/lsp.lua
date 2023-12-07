@@ -15,6 +15,7 @@ require("mason-tool-installer").setup({
 		"typescript-language-server",
 		"prettier",
 		"eslint",
+		"svelte-language-server",
 	},
 })
 
