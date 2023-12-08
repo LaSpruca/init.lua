@@ -46,6 +46,7 @@ require("lazy").setup({
 
 vim.cmd("colorscheme carbonfox")
 require("harpoon"):setup()
+require("telescope").setup({})
 
 -- Set
 require("laspruca.set")
