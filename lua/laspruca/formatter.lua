@@ -21,6 +21,8 @@ require("formatter").setup({
 		typescript = { prettier },
 		typescriptreacct = { prettier },
 		svelte = { prettier },
+		cpp = { require("formatter.filetypes.cpp").clangformat },
+		c = { require("formatter.filetypes.cpp").clangformat },
 	},
 })
 
