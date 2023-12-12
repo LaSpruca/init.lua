@@ -42,6 +42,7 @@ require("lazy").setup({
 	},
 	{ "EdenEast/nightfox.nvim" },
 	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { { "nvim-lua/plenary.nvim" } } },
+	{ "andweeb/presence.nvim" },
 })
 
 vim.cmd("colorscheme carbonfox")
@@ -50,6 +51,9 @@ require("telescope").setup({})
 
 -- Set
 require("laspruca.set")
+
+-- Discord presence
+require("laspruca.presence")
 
 -- Setup sidebar
 require("laspruca.filetree")
