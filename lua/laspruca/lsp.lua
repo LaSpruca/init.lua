@@ -19,6 +19,7 @@ require("mason-tool-installer").setup({
 		"svelte-language-server",
 		"clangd",
 		"clang-format",
+		"java-language-server",
 	},
 })
 
