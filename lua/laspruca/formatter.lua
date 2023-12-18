@@ -19,7 +19,7 @@ require("formatter").setup({
 		javascript = { prettier },
 		javascriptreact = { prettier },
 		typescript = { prettier },
-		typescriptreacct = { prettier },
+		typescriptreact = { prettier },
 		svelte = { prettier },
 		cpp = { require("formatter.filetypes.cpp").clangformat },
 		c = { require("formatter.filetypes.c").clangformat },
