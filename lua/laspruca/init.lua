@@ -43,6 +43,7 @@ require("lazy").setup({
 	{ "EdenEast/nightfox.nvim" },
 	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { { "nvim-lua/plenary.nvim" } } },
 	{ "andweeb/presence.nvim" },
+	{ "zbirenbaum/copilot.lua" },
 })
 
 vim.cmd("colorscheme carbonfox")
@@ -66,6 +67,9 @@ require("laspruca.lsp")
 
 -- Setup formatter
 require("laspruca.formatter")
+
+-- Copilot
+require("laspruca.setup_copilot")
 
 -- Keybinds
 require("laspruca.keyboard")
