@@ -40,13 +40,17 @@ require("lazy").setup({
 		"nvim-tree/nvim-tree.lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-	{ "EdenEast/nightfox.nvim" },
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 	{ "ThePrimeagen/harpoon", branch = "harpoon2", dependencies = { { "nvim-lua/plenary.nvim" } } },
 	{ "andweeb/presence.nvim" },
 	{ "zbirenbaum/copilot.lua" },
 })
 
-vim.cmd("colorscheme carbonfox")
 require("harpoon"):setup()
 require("telescope").setup({})
 
@@ -73,3 +77,6 @@ require("laspruca.setup_copilot")
 
 -- Keybinds
 require("laspruca.keyboard")
+
+-- Colortheme
+vim.cmd([[colorscheme tokyonight]])
