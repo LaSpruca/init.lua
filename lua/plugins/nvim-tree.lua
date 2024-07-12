@@ -11,6 +11,12 @@ return {
 		{ "<leader>ss", "<cmd>Neotree float<cr>", desc = "NeoTree" },
 	},
 	config = function()
-		require("neo-tree").setup()
+		require("neo-tree").setup({
+			filesystem = {
+				filtered_items = {
+					hide_dotfiles = false,
+				},
+			},
+		})
 	end,
 }
