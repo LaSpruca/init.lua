@@ -18,7 +18,6 @@ return {
 				"svelte-language-server",
 				"clangd",
 				"clang-format",
-				"java-language-server",
 			},
 		})
 	end,
