@@ -4,7 +4,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "williamboman/mason-lspconfig.nvim" },
+		{ "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
 	},
 	config = function()
 		-- This is where all the LSP shenanigans will live
