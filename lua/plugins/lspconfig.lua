@@ -2,23 +2,29 @@ return {
 	"neovim/nvim-lspconfig",
 	cmd = { "LspInfo", "LspInstall", "LspStart" },
 	event = { "BufReadPre", "BufNewFile" },
+	version = "^2.0.0",
 	dependencies = {
 		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
+		{ "mason-org/mason-lspconfig.nvim", version = "^2.0.0" },
 	},
 	config = function()
-		-- This is where all the LSP shenanigans will live
-		local lsp_zero = require("lsp-zero")
-		lsp_zero.extend_lspconfig()
+		-- in init.lua or a module
+		vim.lsp.config("*", {
+			on_attach = function(client, bufnr)
+				-- Keymaps
+				local buf = bufnr
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buf })
+				vim.keymap.set("n", "g.", vim.lsp.buf.code_action, { buffer = buf })
+				-- Add more keymaps as needed...
 
-		-- if you want to know more about mason.nvim
-		-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-		lsp_zero.on_attach(function(client, bufnr)
-			-- see :help lsp-zero-keybindings
-			-- to learn the available actions
-			lsp_zero.default_keymaps({ buffer = bufnr })
-			vim.keymap.set("n", "g.", vim.lsp.buf.code_action, { buffer = bufnr })
-		end)
+				-- Optional: enable virtual text for diagnostics
+				vim.diagnostic.config({
+					virtual_text = true,
+					signs = true,
+					underline = true,
+				})
+			end,
+		})
 
 		require("mason-lspconfig").setup({
 			ensure_installed = {},
