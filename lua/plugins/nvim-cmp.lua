@@ -2,29 +2,57 @@ return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
-		{ "L3MON4D3/LuaSnip" },
+		"L3MON4D3/LuaSnip",
+		"saadparwaiz1/cmp_luasnip", -- For LuaSnip completions
+		"hrsh7th/cmp-nvim-lsp", -- LSP completion source
+		"hrsh7th/cmp-buffer", -- Buffer completions (optional)
+		"hrsh7th/cmp-path", -- Path completions (optional)
 	},
 	config = function()
-		-- Here is where you configure the autocompletion settings.
-		local lsp_zero = require("lsp-zero")
-		lsp_zero.extend_cmp()
-
-		-- And you can configure cmp even more, if you want to.
 		local cmp = require("cmp")
-		local cmp_action = lsp_zero.cmp_action()
+		local luasnip = require("luasnip")
 
 		cmp.setup({
-			formatting = lsp_zero.cmp_format({ details = true }),
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-u>"] = cmp.mapping.scroll_docs(-4),
 				["<C-d>"] = cmp.mapping.scroll_docs(4),
-				["<C-f>"] = cmp_action.luasnip_jump_forward(),
-				["<C-b>"] = cmp_action.luasnip_jump_backward(),
+				["<C-f>"] = cmp.mapping(function(fallback)
+					if luasnip.jumpable(1) then
+						luasnip.jump(1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-b>"] = cmp.mapping(function(fallback)
+					if luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
-			snippet = {
-				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" },
+				{ name = "luasnip" },
+				{ name = "buffer" },
+				{ name = "path" },
+			}),
+			formatting = {
+				format = function(entry, vim_item)
+					vim_item.menu = ({
+						nvim_lsp = "[LSP]",
+						luasnip = "[Snippet]",
+						buffer = "[Buffer]",
+						path = "[Path]",
+					})[entry.source.name]
+					return vim_item
 				end,
 			},
 		})
